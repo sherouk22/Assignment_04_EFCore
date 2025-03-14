@@ -58,8 +58,17 @@ namespace Assignment
 
                 #endregion
 
+                #region  Remote Vs Local
+
+                context.Products.Load();
+
+                if (context.Products.Local.Any(x => x.UnitsInStock == 0))
+                    Console.WriteLine("There Are Out Of Stock");
+                else
+                    Console.WriteLine("There Are Not Out Of Stock");
 
 
+                #endregion
             }
 
 
