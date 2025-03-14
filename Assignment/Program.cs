@@ -38,7 +38,24 @@ namespace Assignment
 
                 // 2. Execute DML Statement
 
-                context.Database.ExecuteSqlInterpolated($"update Products set ProductName = 'Chai02' where ProductId ={1}" );
+                // context.Database.ExecuteSqlInterpolated($"update Products set ProductName = 'Chai02' where ProductId ={1}" );
+                #endregion
+
+                #region Lazy Loading Vs Eager Loading Vs Explicit Loading
+
+
+                //var product = context.Products.Include(x => x.Category).ThenInclude(x =>x.Products).FirstOrDefault();
+
+                //var CategoryName = product.Category.CategoryName;
+
+
+                var product = context.Products.FirstOrDefault();
+
+
+                context.Entry(product).Reference(x => x.Category).Load();
+
+                var CategoryName = product.Category.CategoryName;
+
                 #endregion
 
 
